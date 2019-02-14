@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/ojtanner/tictactoe/issues"
   },
-  "homepage": "https://github.com/ojtanner/tictactoe#readme"
+  "homepage": "https://github.com/ojtanner/tictactoe#readme",
+  "devDependencies": {
+    "jest": "^24.1.0"
+  },
+  "dependencies": {}
 }
