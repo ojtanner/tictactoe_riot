@@ -1,0 +1,48 @@
+<playingField>
+    <div class="field mx-auto">
+        <box each={ box in getBoxList() }></box>
+    </div>
+
+    <style>
+        .field {
+            height: 470px;
+            width: 470px;
+            margin-top: 40px;
+            display: grid;
+            grid-gap: 10px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .grid-item {
+            border-radius: 20px;
+            width: 150px;
+            height: 150px;
+        }
+
+        .unchecked {
+            background-color: #E27D60;
+        }
+
+        .checked {
+            background-color: #E8A87C;
+        }
+    </style>
+    
+    <script>
+        const tag = this;
+        const rowNumber = 3;
+        
+        function getBoxNumber(x) {
+            return rowNumber*rowNumber;
+        }
+
+        this.getBoxList = () => {
+            const boxNumber = getBoxNumber();
+            const boxList = [];
+            for(let i = 0; i < boxNumber; i++) {
+                boxList.push({number: i+1});
+            }
+            console.log(boxList);
+            return boxList;
+        }
+    </script>
+</playingField>

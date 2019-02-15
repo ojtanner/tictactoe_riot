@@ -1,0 +1,20 @@
+<box class="grid-item unchecked" onclick="{ changeClass }">
+
+    <style>
+    </style>
+
+    <script>
+        console.log(this.root.attributes[0].nodeValue)
+        let isChecked = false;
+        
+        this.changeClass = () => {
+            if(isChecked) {
+                this.root.attributes[0].nodeValue = "grid-item unchecked" 
+            }
+            else {
+                this.root.attributes[0].nodeValue = "grid-item checked";
+            }
+            isChecked = !isChecked;
+        }
+    </script>
+</box>
