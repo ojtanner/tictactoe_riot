@@ -1,21 +1,26 @@
 <box class="grid-item text-center unchecked" onclick="{ changeClass }">
-    <h3>
+    <h3 ref="playerMark">
         X
     </h3>
     <style>
     </style>
 
     <script>
+        const self = this
         let isChecked = false;
-        
+
         this.changeClass = () => {
             if(isChecked) {
-                this.root.attributes[0].nodeValue = "grid-item text-center unchecked" 
+                this.root.attributes[0].nodeValue = "grid-item text-center unchecked";
+                this.refs.playerMark.style.display = "none";
             }
             else {
-                this.root.attributes[0].nodeValue = "grid-item text-center unchecked";
+                this.root.attributes[0].nodeValue = "grid-item text-center checked";
+                this.refs.playerMark.style.display = "initial";
             }
             isChecked = !isChecked;
+            console.log(isChecked);
+            self.update();
         }
     </script>
 </box>
