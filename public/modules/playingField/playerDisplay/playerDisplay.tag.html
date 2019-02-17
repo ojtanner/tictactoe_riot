@@ -1,11 +1,14 @@
 <playerDisplay class="playerDisplay mx-auto">
     <h3 class="text-center">
-        Current Player: X
+        Current Player: { getCurrentPlayer() }
     </h3>
 
     <style>
     </style>
 
     <script>
+        this.getCurrentPlayer = function() {
+            return "O";
+        }
     </script>
 </playerDisplay>
