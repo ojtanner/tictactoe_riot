@@ -1,26 +1,24 @@
-<box class="grid-item text-center unchecked" onclick="{ changeClass }">
+<box class="grid-item text-center unchecked" onclick="{ setMark }">
     <h3 ref="playerMark">
-        X
+        { mark }
     </h3>
     <style>
     </style>
 
     <script>
         const self = this
-        let isChecked = false;
+        let isMarked = false;
+        let mark = "";
 
-        this.changeClass = () => {
-            if(isChecked) {
-                this.root.attributes[0].nodeValue = "grid-item text-center unchecked";
-                this.refs.playerMark.style.display = "none";
-            }
-            else {
+        //setMark needs to take in the player setting the mark to put x or o
+        this.setMark = () => {
+            if(!isMarked) {
                 this.root.attributes[0].nodeValue = "grid-item text-center checked";
-                this.refs.playerMark.style.display = "initial";
+                //this.refs.playerMark.style.display = "initial";
+                this.refs.playerMark.innerHTML = getCurrentPlayer();
+                changePlayer();
+                isMarked = !isMarked;
             }
-            isChecked = !isChecked;
-            console.log(isChecked);
-            self.update();
         }
     </script>
 </box>
