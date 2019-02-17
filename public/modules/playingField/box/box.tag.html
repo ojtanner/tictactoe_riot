@@ -1,5 +1,7 @@
-<box class="grid-item unchecked" onclick="{ changeClass }">
-
+<box class="grid-item text-center unchecked" onclick="{ changeClass }">
+    <h3>
+        X
+    </h3>
     <style>
     </style>
 
@@ -8,10 +10,10 @@
         
         this.changeClass = () => {
             if(isChecked) {
-                this.root.attributes[0].nodeValue = "grid-item unchecked" 
+                this.root.attributes[0].nodeValue = "grid-item text-center unchecked" 
             }
             else {
-                this.root.attributes[0].nodeValue = "grid-item checked";
+                this.root.attributes[0].nodeValue = "grid-item text-center unchecked";
             }
             isChecked = !isChecked;
         }
