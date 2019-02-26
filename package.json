@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest",
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "./node_modules/.bin/webpack-dev-server --inline --watch --hot --colors -d --port 8001 --display-error-details"
   },
   "repository": {
     "type": "git",
@@ -20,14 +20,24 @@
   },
   "homepage": "https://github.com/ojtanner/tictactoe#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.3.4",
+    "babel-loader": "^8.0.5",
+    "babel-preset-es2015-riot": "^1.1.0",
+    "css-loader": "^2.1.0",
     "eslint-config-prettier": "^4.0.0",
     "eslint-plugin-prettier": "^3.0.1",
     "jest": "^24.1.0",
     "mini-css-extract-plugin": "^0.5.0",
     "nodemon": "^1.18.10",
-    "prettier": "1.16.4"
+    "prettier": "1.16.4",
+    "riot-hot-reload": "^1.0.0",
+    "riot-tag-loader": "^2.1.0",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
+    "@babel/core": "^7.3.4",
     "express": "^4.16.4",
     "riot": "^3.13.2"
   }
