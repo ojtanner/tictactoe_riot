@@ -6,7 +6,7 @@ config = {
     entry: './public/js/src/index.js',
     output: {
         path: path.join(__dirname, '/public/dist/'),
-        publicPath: '/public/',
+        publicPath: '/public/dist/',
         filename: 'main.js'
     },
     module: {
