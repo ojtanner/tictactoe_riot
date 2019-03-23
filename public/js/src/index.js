@@ -14,14 +14,8 @@ import '../../css/bootstrap-reboot.min.css';
 import '../../css/bootstrap.min.css';
 import '../../css/main.css';
 
-//Redux
-import { test } from './actions';
-import { store } from './store';
-
-
 document.addEventListener('DOMContentLoaded', function() {
     riot.mount("*");
 });
 
-store.dispatch(test());
-console.log(store.getState());
+console.log();
