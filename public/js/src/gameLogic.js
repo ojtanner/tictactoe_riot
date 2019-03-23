@@ -26,28 +26,39 @@ const winConditions = [
     antidiagonal
 ];
 
-const gameLogic = {
-    currentPlayer: player.x,
-    winner: player.none,
-    fieldState: []
+function GameLogic() {
+    this.currentPlayer;
+    this.winner;
+    this.fieldState;
+    this.resetGame();
 };
 
-gameLogic.prototype.resetGame = function() {
+GameLogic.prototype.getFieldState = function() {
+    return this.fieldState;
+};
+
+GameLogic.prototype.getCurrentPlayer = function() {
+    return this.currentPlayer;
+}
+
+GameLogic.prototype.resetGame = function() {
     this.currentPlayer = player.x;
     this.winner = player.none;
-    this.resetField();
+    resetField(this);
 };
 
-const resetField = () => {
-    this.fieldState = new Array(9).forEach((field, index) => {
-        field = {
+const resetField = (that) => {
+    const newFieldState = new Array(9);
+    for(let i = 0; i < newFieldState.length; i++) {
+        newFieldState[i] = {
             mark: player.none,
-            id: index
+            id: i
         };
-    });
+    }
+    that.fieldState = newFieldState;
 };
 
-gameLogic.prototype.executeTurn = function(fieldId) {
+GameLogic.prototype.executeTurn = function(fieldId) {
     setMark(fieldId);
     checkForWin();
 };
@@ -79,4 +90,4 @@ const checkWinCondition = (markedFields, winConditions) => {
     return true;
 };
 
-export const gameLogic;
+export default GameLogic;

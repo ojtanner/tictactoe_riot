@@ -1,59 +1,46 @@
 <playingField>
-    <playerDisplay></playerDisplay>
+  <playerDisplay></playerDisplay>
 
-    <div class="field mx-auto">
-        <box each={ box in getBoxList() }></box>
-    </div>
+  <div class="field mx-auto">
+    <box each={ field in getFieldState() }>{field.title}</box>
+  </div>
 
-    <style>
-        .playerDisplay h3{
-            width: 470px;
-            margin: 20px auto 20px auto;
-            font-family: 'Righteous', cursive;
-        }
-        .field {
-            height: 470px;
-            width: 470px;
-            margin-top: 0px;
-            display: grid;
-            grid-gap: 10px;
-            grid-template-columns: repeat(3, 1fr);
-        }
-        .grid-item {
-            border-radius: 20px;
-            width: 150px;
-            height: 150px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-            .grid-item h3 {
-                font-size: 100px;
-                font-family: "Righteous", "cursive";
-            }
-        .unchecked {
-            background-color: #E27D60;
-        }
-        .checked {
-            background-color: #E8A87C;
-        }
-    </style>
-    
-    <script>
-        const tag = this;
-        const rowNumber = 3;
-        
-        function getBoxNumber(x) {
-            return rowNumber*rowNumber;
-        }
+  <style>
+    .playerDisplay h3 {
+      width: 470px;
+      margin: 20px auto 20px auto;
+      font-family: "Righteous", cursive;
+    }
+    .field {
+      height: 470px;
+      width: 470px;
+      margin-top: 0px;
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .grid-item {
+      border-radius: 20px;
+      width: 150px;
+      height: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .grid-item h3 {
+      font-size: 100px;
+      font-family: "Righteous", "cursive";
+    }
+    .unchecked {
+      background-color: #e27d60;
+    }
+    .checked {
+      background-color: #e8a87c;
+    }
+  </style>
 
-        this.getBoxList = () => {
-            const boxNumber = getBoxNumber();
-            const boxList = [];
-            for(let i = 0; i < boxNumber; i++) {
-                boxList.push({number: i+1});
-            }
-            return boxList;
-        }
-    </script>
+  <script>
+    const tag = this;
+    this.list = [{title: 'why'},{title: 'why'},{title: 'why'}]
+  </script>
 </playingField>
