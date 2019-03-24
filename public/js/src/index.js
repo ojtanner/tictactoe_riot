@@ -16,7 +16,7 @@ import '../../css/bootstrap.min.css';
 import '../../css/main.css';
 
 //JS
-import GameLogic from '../src/gameLogic';
+import GameLogic from '../src/GameLogic';
 
 document.addEventListener('DOMContentLoaded', function() {
     const game = new GameLogic()
