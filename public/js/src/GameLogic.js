@@ -1,8 +1,4 @@
-const player = {
-    x : "X",
-    o : "O",
-    none: "None"
-};
+import player from './player.enum';
 
 const horizontalRow1 = [1,2,3];
 const horizontalRow2 = [4,5,6];
@@ -39,6 +35,10 @@ GameLogic.prototype.getFieldState = function() {
 
 GameLogic.prototype.getCurrentPlayer = function() {
     return this.currentPlayer;
+}
+
+GameLogic.prototype.getWinner = function() {
+    return this.winner;
 }
 
 GameLogic.prototype.resetGame = function() {
