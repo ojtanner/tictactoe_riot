@@ -30,6 +30,7 @@
     "mini-css-extract-plugin": "^0.5.0",
     "nodemon": "^1.18.10",
     "prettier": "1.16.4",
+    "rewire": "^4.0.1",
     "riot-hot-reload": "^1.0.0",
     "riot-tag-loader": "^2.1.0",
     "webpack": "^4.29.5",
