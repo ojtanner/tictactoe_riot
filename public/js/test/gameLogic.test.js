@@ -32,21 +32,64 @@ describe('resetGame', () => {
     });    
 });
 
-describe('checkWinCondition', () => {
+describe('extractMarkedPositions', () => {
     let game;
-    let markedFields_winHorizontal1_positive = [1,2,3];
 
     beforeEach(() => {
         game = new GameLogic();
     });
 
-    test('win horizontal row 1', () => {
-        expect()
+    test('extracts only fields marked by current player', () => {
+        let fieldState = [
+            {mark: player.x, id: 1},
+            {mark: player.o, id: 2},
+            {mark: player.none, id: 3},
+            {mark: player.x, id: 4}
+        ];
+        let expectedResult = [1,4];
+        expect(game.extractMarkedPositions(fieldState)).toEqual(expectedResult);
     });
 });
 
-/*
-test('', () => {
+describe('checkWinCondition', () => {
+    let game;
 
+    let positiveTest = [1,2,3];
+    let simpleCondition = [1,2,3];
+    let simpleFalseCondition = [1,6,9];
+
+    let markedPositionsRow1 = [1,2,3];
+    let markedPositionsRow1Negative = [1,2,4];
+
+    let markedPositionsColumn1 = [1,4,7];
+    let markedPositionsColumn1Negative = [1,2,8];
+
+
+    beforeEach(() => {
+        game = new GameLogic();
+    });
+
+    test('logic works with correct values', () => {
+        expect(game.checkWinCondition(positiveTest, simpleCondition)).toBe(true);
+    });
+
+    test('logic works with incorrect values', () => {
+        expect(game.checkWinCondition(positiveTest, simpleFalseCondition)).toBe(false);
+    });
+
+    test('recognizes win condition row 1', () => {
+        expect(game.checkWinCondition(markedPositionsRow1, game.winConditions[0])).toBe(true);
+    });
+
+    test('recognizes negative win condition row 1', () => {
+        expect(game.checkWinCondition(markedPositionsRow1Negative,game.winConditions[0])).toBe(false);
+    });
+
+    test('recognizes win condition column 1', () => {
+        expect(game.checkWinCondition(markedPositionsColumn1, game.winConditions[3])).toBe(true);
+    });
+
+    test('recognizes negative win condition column 1', () => {
+        expect(game.checkWinCondition(markedPositionsColumn1Negative, game.winConditions[3])).toBe(false);
+    });
 });
-*/
