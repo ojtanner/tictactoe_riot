@@ -54,7 +54,7 @@ describe('extractMarkedPositions', () => {
 describe('checkWinCondition', () => {
     let game;
 
-    let positiveTest = [1,2,3];
+    let testArray = [1,2,3];
     let simpleCondition = [1,2,3];
     let simpleFalseCondition = [1,6,9];
 
@@ -70,11 +70,11 @@ describe('checkWinCondition', () => {
     });
 
     test('logic works with correct values', () => {
-        expect(game.checkWinCondition(positiveTest, simpleCondition)).toBe(true);
+        expect(game.checkWinCondition(testArray, simpleCondition)).toBe(true);
     });
 
     test('logic works with incorrect values', () => {
-        expect(game.checkWinCondition(positiveTest, simpleFalseCondition)).toBe(false);
+        expect(game.checkWinCondition(testArray, simpleFalseCondition)).toBe(false);
     });
 
     test('recognizes win condition row 1', () => {
