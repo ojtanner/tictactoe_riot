@@ -30,6 +30,10 @@ function GameLogic() {
     this.resetGame();
 };
 
+GameLogic.prototype.getWinConditions = function() {
+    return this.winConditions;
+}
+
 GameLogic.prototype.getFieldState = function() {
     return this.fieldState;
 };
