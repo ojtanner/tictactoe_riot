@@ -23,6 +23,7 @@ const winConditions = [
 ];
 
 function GameLogic() {
+    this.winConditions = winConditions;
     this.currentPlayer;
     this.winner;
     this.fieldState;
@@ -44,10 +45,15 @@ GameLogic.prototype.getWinner = function() {
 GameLogic.prototype.resetGame = function() {
     this.currentPlayer = player.x;
     this.winner = player.none;
-    resetField(this);
+    this.resetField(this);
 };
 
-const resetField = (that) => {
+GameLogic.prototype.executeTurn = function(fieldId) {
+    this.setMark(fieldId);
+    this.checkForWin();
+};
+
+GameLogic.prototype.resetField = (that) => {
     const newFieldState = new Array(9);
     for(let i = 0; i < newFieldState.length; i++) {
         newFieldState[i] = {
@@ -58,16 +64,12 @@ const resetField = (that) => {
     that.fieldState = newFieldState;
 };
 
-GameLogic.prototype.executeTurn = function(fieldId) {
-    setMark(fieldId);
-    checkForWin();
-};
-
-const setMark = (fieldId) => {
+GameLogic.prototype.setMark = (fieldId) => {
     this.fieldState[fieldId].mark = this.currentPlayer;
 };
 
-const checkForWin = () => {
+GameLogic.prototype.checkForWin = () => {
+    let currentFieldState = extractMarkedPositions();
     if (
         checkWinCondition(
             this.fieldState
@@ -81,11 +83,18 @@ const checkForWin = () => {
     ) this.winner =  this.currentPlayer;  
 };
 
-const checkWinCondition = (markedFields, winConditions) => {
-    for(let condition = 0; condition < winConditions.length; condition++) {
-        for (let i = 0; i < 3; i++) {
-            if (markedFields[i] !== winCondition[i]) return false;
-        };
+GameLogic.prototype.extractMarkedPositions = function (fieldState) {
+    return fieldState.reduce((array, currentField) => {
+        if(currentField.mark === this.currentPlayer) {
+            array.push(currentField.id);
+        }
+        return array;
+    }, []);
+}
+
+GameLogic.prototype.checkWinCondition = function (markedFields, condition) {
+    for(let i = 0; i < condition.length; i++){
+        if(!(markedFields.includes(condition[i]))) return false;
     };
     return true;
 };
