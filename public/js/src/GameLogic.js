@@ -69,18 +69,10 @@ GameLogic.prototype.setMark = (fieldId) => {
 };
 
 GameLogic.prototype.checkForWin = () => {
-    let currentFieldState = extractMarkedPositions();
-    if (
-        checkWinCondition(
-            this.fieldState
-            .filter(field => field.mark === this.currentPlayer)
-            .reduce((list, field) => {
-                list.push(field.id);
-            }, [])
-            .sort((a,b) => a > b),
-            winConditions
-        )
-    ) this.winner =  this.currentPlayer;  
+    let markedFields = extractMarkedPositions();
+    if (checkWinCondition(markedFields, this.winConditions)) {
+        this.winner = this.currentPlayer;
+    }  
 };
 
 GameLogic.prototype.extractMarkedPositions = function (fieldState) {
