@@ -186,12 +186,21 @@ describe('checkForWin', () => {
         expect(game.getWinner()).toBe(player.none);
     });
 
-    test('should set winner to current player on win', () => {
+    test('should set winner to player that executed last move', () => {
+        let playerBeforeWinCheck = game.getCurrentPlayer();
         game.setMark(0);
         game.setMark(1);
         game.setMark(2);
         game.checkForWin();
-        expect(game.getWinner()).toBe(game.getCurrentPlayer());
+        expect(game.getWinner()).toBe(playerBeforeWinCheck);
+    });
+
+    test('should set the player to none on win', () => {
+        game.setMark(0);
+        game.setMark(1);
+        game.setMark(2);
+        game.checkForWin();
+        expect(game.getCurrentPlayer()).toBe(player.none);
     });
     
     test('should not set winner when no win happens', () => {
@@ -200,5 +209,105 @@ describe('checkForWin', () => {
        game.setMark(8);
        game.checkForWin();
        expect(game.getWinner()).toBe(player.none); 
+    });
+
+    test('should not change player to none when no win happens', () => {
+        game.setMark(2);
+        game.setMark(3);
+        game.setMark(8);
+        game.checkForWin();
+        expect(game.getCurrentPlayer()).not.toBe(player.none); 
+    });     
+});
+
+describe('executeTurn', () => {
+    let game;
+
+    beforeEach(() => {  
+       game = new GameLogic();
+    });
+
+    test('should execute turn when no winner is declared as in marks field', () => {
+        let fieldIndex = 0;
+        game.executeTurn(fieldIndex);
+        expect(game.getFieldState()[fieldIndex].mark).not.toBe(player.none);
+    });
+   
+    test('should execute turn when no winner is declred as in change player', () => {
+        let playerAtStartOfTurn = game.getCurrentPlayer();
+        game.executeTurn(0);
+        expect(game.getCurrentPlayer()).not.toBe(playerAtStartOfTurn);
+    });
+    
+    test('should not set player to none when no win happens', () => {
+        game.executeTurn(0);
+        expect(game.getCurrentPlayer()).not.toBe(player.none);
+    });
+
+    test('should set winner to x when player x wins', () => {
+       let expectedWinner = player.x;
+       // X
+       game.executeTurn(0); 
+       // O
+       game.executeTurn(3);
+       // X
+       game.executeTurn(1);
+       // O
+       game.executeTurn(4);
+       // X
+       game.executeTurn(2); 
+       expect(game.getWinner()).toBe(expectedWinner);
+    });
+    
+    test('should not set any marks after win happens', () => {
+        let expectedMark = player.none;
+        // X
+        game.executeTurn(0); 
+        // O
+        game.executeTurn(3);
+        // X
+        game.executeTurn(1);
+        // O
+        game.executeTurn(4);
+        // X
+        game.executeTurn(2);
+        // None
+        game.executeTurn(5);
+        expect(game.getFieldState()[5].mark).toBe(expectedMark);
+    });
+
+    test('should not set mark on marked field', () => {
+        let expectedMark = player.x;
+        let fieldIndex = 0;
+        // X
+        game.executeTurn(fieldIndex);
+        // O
+        game.executeTurn(fieldIndex);
+        expect(game.getFieldState()[fieldIndex].mark).toBe(expectedMark);
+    });
+
+    test('should not change player if field was already marked', () => {
+        let expectedCurrentPlayer = player.o;
+        let fieldIndex = 0;
+        // X
+        game.executeTurn(fieldIndex);
+        // O
+        game.executeTurn(fieldIndex);
+        expect(game.getCurrentPlayer()).toBe(expectedCurrentPlayer);
+    });
+
+    test('should not change player if win is already declared', () => {
+        let expectedCurrentPlayer = player.none;
+        // X
+        game.executeTurn(0); 
+        // O
+        game.executeTurn(3);
+        // X
+        game.executeTurn(1);
+        // O
+        game.executeTurn(4);
+        // X
+        game.executeTurn(2);
+        expect(game.getCurrentPlayer()).toBe(expectedCurrentPlayer);
     });
 });

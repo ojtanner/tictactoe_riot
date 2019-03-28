@@ -50,6 +50,10 @@ GameLogic.prototype.getWinner = function() {
     return this.winner;
 };
 
+GameLogic.prototype.setWinner = function (player) {
+    this.winner = player;
+};
+
 GameLogic.prototype.resetGame = function() {
     this.currentPlayer = player.x;
     this.winner = player.none;
@@ -65,12 +69,21 @@ GameLogic.prototype.changePlayer = function () {
     };
 };
 
-GameLogic.prototype.executeTurn = function(fieldId) {
-    if (this.getCurrentPlayer() === player.none) {
+GameLogic.prototype.executeTurn = function(fieldIndex) {
+    if (this.getCurrentPlayer() === player.none
+        && this.getWinner() !== player.none) {
         return;
     }
-    this.setMark(fieldId);
+    if (this.getFieldState()[fieldIndex].mark !== player.none) {
+        return;
+    }
+    this.setMark(fieldIndex);
     this.checkForWin();
+    if (this.getCurrentPlayer() !== player.none
+        && this.getWinner() === player.none) {
+        this.changePlayer();
+    }
+    return;
 };
 
 GameLogic.prototype.resetField = (that) => {
@@ -84,14 +97,15 @@ GameLogic.prototype.resetField = (that) => {
     that.fieldState = newFieldState;
 };
 
-GameLogic.prototype.setMark = function (fieldId) {
-    this.fieldState[fieldId].mark = this.currentPlayer;
+GameLogic.prototype.setMark = function (fieldIndex) {
+    this.fieldState[fieldIndex].mark = this.currentPlayer;
 };
 
 GameLogic.prototype.checkForWin = function () {
     let markedFields = this.extractMarkedPositions(this.getFieldState());
     if (this.checkAllWinConditions(markedFields)) {
-        this.winner = this.currentPlayer;
+        this.setWinner(this.getCurrentPlayer());
+        this.setCurrentPlayer(player.none);
     }  
 };
 
