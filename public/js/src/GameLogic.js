@@ -68,13 +68,13 @@ GameLogic.prototype.resetField = (that) => {
     that.fieldState = newFieldState;
 };
 
-GameLogic.prototype.setMark = (fieldId) => {
+GameLogic.prototype.setMark = function (fieldId) {
     this.fieldState[fieldId].mark = this.currentPlayer;
 };
 
 GameLogic.prototype.checkForWin = () => {
     let markedFields = extractMarkedPositions();
-    if (checkWinCondition(markedFields, this.winConditions)) {
+    if (checkAllWinConditions(markedFields)) {
         this.winner = this.currentPlayer;
     }  
 };

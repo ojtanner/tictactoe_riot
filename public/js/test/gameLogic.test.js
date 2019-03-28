@@ -32,6 +32,28 @@ describe('resetGame', () => {
     });    
 });
 
+describe('setMark', () => {
+    let game;
+
+    beforeEach(() => {
+        game = new GameLogic();
+    });
+
+    test('should have the mark of initial fields set to player.none', () => {
+        expect(game.getFieldState()[0].mark).toBe(player.none);
+    });
+
+    test('should set the mark in the correct field', () => {
+        game.setMark(0);
+        expect(game.getFieldState()[0].mark).not.toBe(player.none);
+    });
+
+    test('should set the mark of the correct player', () => {
+        game.setMark(1);
+        expect(game.getFieldState()[1].mark).toBe(game.getCurrentPlayer());
+    });
+});
+
 describe('extractMarkedPositions', () => {
     let game;
 
@@ -130,5 +152,18 @@ describe('checkAllWinConditions', () => {
         let shortArray = [1,2];
         expect(game.checkAllWinConditions(shortArray)).toBe(false);
     });
+    
+});
+
+describe('checkForWin', () => {
+    let game;
+
+    beforeEach(() => {
+        game = new GameLogic();
+    });
+
+    /* test('should set current player as winner', () => {
+        let winRow1 = [1,2,3];
+    }); */
     
 });
