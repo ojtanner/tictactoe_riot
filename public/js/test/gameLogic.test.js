@@ -93,3 +93,42 @@ describe('checkWinCondition', () => {
         expect(game.checkWinCondition(markedPositionsColumn1Negative, game.winConditions[3])).toBe(false);
     });
 });
+
+describe('checkAllWinConditions', () => {
+    let game;
+
+    beforeAll(() => {
+        game = new GameLogic();
+    });
+
+    test('recognizes win condition row 1', () => {
+        let markedPositionsRow1 = [1,2,3];
+        expect(game.checkAllWinConditions(markedPositionsRow1)).toBe(true);
+    });
+
+    test('recognizes negative win condition row 1', () => {
+        let markedPositionsRow1Negative = [1,2,6];
+        expect(game.checkAllWinConditions(markedPositionsRow1Negative)).toBe(false);
+    });
+
+    test('recognizes win condition column 1', () => {
+        let markedPositionsColumn1 = [1,4,7];
+        expect(game.checkAllWinConditions(markedPositionsColumn1)).toBe(true);
+    });
+
+    test('recognizes negative win condition column 1', () => {
+        let markedPositionsColumn1Negative = [1,4,9];
+        expect(game.checkAllWinConditions(markedPositionsColumn1Negative)).toBe(false);
+    });
+    
+    test('returns false when given an empty array', () => {
+        let emptyArray = [];
+        expect(game.checkAllWinConditions(emptyArray)).toBe(false);
+    });
+
+    test('returns false when given an array with less elements than necessary for a win', () => {
+        let shortArray = [1,2];
+        expect(game.checkAllWinConditions(shortArray)).toBe(false);
+    });
+    
+});

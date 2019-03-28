@@ -95,4 +95,13 @@ GameLogic.prototype.checkWinCondition = function (markedFields, condition) {
     return true;
 };
 
+GameLogic.prototype.checkAllWinConditions = function (markedFields) {
+    for (let i = 0; i < this.getWinConditions().length; i++) {
+        if (this.checkWinCondition(markedFields, this.getWinConditions()[i])) {
+            return true;
+        }
+    }
+    return false;
+}
+
 export default GameLogic;
