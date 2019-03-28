@@ -4,7 +4,6 @@ import player from '../src/player.enum';
 describe('resetGame', () => {
     let game;
     let expectedFieldState = [
-        { mark: player.none, id: 0 },
         { mark: player.none, id: 1 },
         { mark: player.none, id: 2 },
         { mark: player.none, id: 3 },
@@ -12,7 +11,8 @@ describe('resetGame', () => {
         { mark: player.none, id: 5 },
         { mark: player.none, id: 6 },
         { mark: player.none, id: 7 },
-        { mark: player.none, id: 8 }
+        { mark: player.none, id: 8 },
+        { mark: player.none, id: 9 }
     ];
 
     beforeEach(() => {
@@ -70,7 +70,7 @@ describe('extractMarkedPositions', () => {
         ];
         let expectedResult = [1,4];
         expect(game.extractMarkedPositions(fieldState)).toEqual(expectedResult);
-    });
+    });    
 });
 
 describe('checkWinCondition', () => {
@@ -162,8 +162,23 @@ describe('checkForWin', () => {
         game = new GameLogic();
     });
 
-    /* test('should set current player as winner', () => {
-        let winRow1 = [1,2,3];
-    }); */
+    test('should have winner set to player.none initially', () => {
+        expect(game.getWinner()).toBe(player.none);
+    });
+
+    test('should set winner to current player on win', () => {
+        game.setMark(0);
+        game.setMark(1);
+        game.setMark(2);
+        game.checkForWin();
+        expect(game.getWinner()).toBe(game.getCurrentPlayer());
+    });
     
+    test('should not set winner when no win happens', () => {
+       game.setMark(2);
+       game.setMark(3);
+       game.setMark(8);
+       game.checkForWin();
+       expect(game.getWinner()).toBe(player.none); 
+    });
 });
