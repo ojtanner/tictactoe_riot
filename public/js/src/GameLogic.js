@@ -40,11 +40,15 @@ GameLogic.prototype.getFieldState = function() {
 
 GameLogic.prototype.getCurrentPlayer = function() {
     return this.currentPlayer;
-}
+};
+
+GameLogic.prototype.setCurrentPlayer = function (player) {
+    this.currentPlayer = player;
+};
 
 GameLogic.prototype.getWinner = function() {
     return this.winner;
-}
+};
 
 GameLogic.prototype.resetGame = function() {
     this.currentPlayer = player.x;
@@ -52,7 +56,19 @@ GameLogic.prototype.resetGame = function() {
     this.resetField(this);
 };
 
+GameLogic.prototype.changePlayer = function () {
+    let currentPlayer = this.getCurrentPlayer();
+    if (currentPlayer === player.x) {
+        this.setCurrentPlayer(player.o)
+    } else if (currentPlayer === player.o) {
+        this.setCurrentPlayer(player.x);
+    };
+};
+
 GameLogic.prototype.executeTurn = function(fieldId) {
+    if (this.getCurrentPlayer() === player.none) {
+        return;
+    }
     this.setMark(fieldId);
     this.checkForWin();
 };

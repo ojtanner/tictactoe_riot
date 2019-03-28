@@ -32,6 +32,26 @@ describe('resetGame', () => {
     });    
 });
 
+describe('changePlayer', () => {
+    let game;
+
+    beforeEach(() => {
+        game = new GameLogic();
+    });
+
+    test('should change player from X to O', () => {
+       game.changePlayer();
+       expect(game.getCurrentPlayer()).toBe(player.o); 
+    });
+    
+    test('should change player from X to O to X', () => {
+        game.changePlayer();
+        game.changePlayer();
+        expect(game.getCurrentPlayer()).toBe(player.x);
+    });
+    
+});
+
 describe('setMark', () => {
     let game;
 
