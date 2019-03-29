@@ -1,10 +1,26 @@
-<box class="grid-item text-center unchecked" onclick="{ setMark }">
-    <h3 ref="playerMark">
-        { mark }
+<box class="grid-item text-center unchecked" onclick="{ markMe }">
+    <h3 ref="playerMark" if="{ amMarked() }">
+        { giveMark() }
     </h3>
     <style>
     </style>
 
     <script>
+        this.id = opts.id;
+        this.index = this.id - 1;
+        this.mark = global.game.getFieldState()[this.index].mark;
+
+        this.giveMark = function () {
+            return global.game.getFieldState()[this.index].mark;
+        };
+
+        this.markMe = function () {
+            global.game.executeTurn(this.index);
+            riot.update();
+        };
+
+        this.amMarked = function () {
+            return global.game.getFieldState()[this.index].mark !== "None" ? true : false;
+        }
     </script>
 </box>

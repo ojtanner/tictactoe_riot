@@ -19,8 +19,7 @@ import '../../css/main.css';
 import GameLogic from '../src/GameLogic';
 
 document.addEventListener('DOMContentLoaded', function() {
-    const game = new GameLogic()
-    riot.mixin(game);
+    global.game = new GameLogic()
     riot.mount("*");
 });
 

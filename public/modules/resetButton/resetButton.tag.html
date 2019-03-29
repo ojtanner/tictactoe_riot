@@ -1,5 +1,5 @@
 <resetButton class="form-row text-center">
-    <button type="button" class="btn btn-primary mx-auto resetButton">Reset Game</button>
+    <button type="button" class="btn btn-primary mx-auto resetButton" onclick="{ resetMe }">Reset Game</button>
 
     <style>
         .resetButton {
@@ -10,4 +10,11 @@
             border: 1px solid #C38D9E;
         }
     </style>
+
+    <script>
+        this.resetMe = function () {
+            global.game.resetGame();
+            riot.update();
+        }
+    </script>
 </resetButton>
