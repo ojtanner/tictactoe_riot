@@ -7,7 +7,7 @@ app.use(express.static(path.join(process.cwd() + '/public/dist')));
 
 app.get('/', (request, response) => {
     response.header({'Content-Type': 'text/html'});
-    response.sendFile(path.join(process.cwd() + '/public/dist/index.html'));
+    response.sendFile(path.join(process.cwd() + '/public/html/index.html'));
 });
 
 app.listen(port, () => {
