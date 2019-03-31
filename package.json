@@ -1,6 +1,9 @@
 {
   "name": "tictactoe",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.15.1"
+  },
   "description": "A simple TicTacToe game.",
   "browser": "html/index.html",
   "main": "",
