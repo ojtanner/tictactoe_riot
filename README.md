@@ -1,9 +1,14 @@
 # Tic Tac Toe
 A simple Tic Tac Toe game implemented with vanilla js and riotjs.
 
-This project is meant to be a simplistic implementation of the game.
-The main goal is to write the frontend first (riot-tags, css, html)
-and then write the backend-logic through TDD.
+### This small website was implemented with:
+* Webpack 4 for bundling and the Dev Server
+* Jest for TDD
+* Riot.js for modular and reusable html
 
-It is by no means meant to be pretty or responsive
-The main focus is the game-logic.
+---
+
+### What i have learned from this project:
+* Webpack is hard and complicated. I probably should do the Sean Larking Webpack Academy at some point in the future.
+* TDD rocks! I kinda started writing the logic first and forgetting about TDD, but once i caught up and actually started doing it, it gave me a huge confidence boost. This may be a small app, but TDD helped me actually test the behaviour of the GameLogic object and find lots and lots of errors and oversights on my part.
+* Riot.js is ok for small projects, but i would like to learn a more mature technology like Vue or React.
