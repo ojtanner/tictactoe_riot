@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const port = (process.env.PORT || 8000);
+const port = (process.env.PORT || 8008);
 
-app.use(express.static(path.join(process.cwd() + '/public/dist')));
+app.use(express.static(path.join(process.cwd() + '/public')));
 
 app.get('/', (request, response) => {
     response.header({'Content-Type': 'text/html'});
