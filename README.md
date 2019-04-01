@@ -4,7 +4,7 @@
 * Webpack 4 for bundling and the Dev Server
 * Jest for TDD
 * Riot.js for modular and reusable html
-
+* **Feedback is welcome!**
 ---
 
 ### What i have learned from this project:
