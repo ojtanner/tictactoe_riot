@@ -3,7 +3,7 @@
 ### This small website was implemented with:
 * Webpack 4 for bundling and the Dev Server
 * Jest for TDD
-* Riot.js for modular and reusable html
+* Riot.js for modular and reusable HTML
 * **Feedback is welcome!**
 ---
 
@@ -17,4 +17,6 @@
 * I tried setting up the babel-rewire-plugin to test "private" functions. I did not get it to work, so all the methods of the GameLogic object are public and exported. That does not feel right.
 * Actually start writing TDD code from the start, not just when i start hitting a snag.
 * Imporove the configuration of the app. Better package.json scripts. The es-lint and prettier configs where pretty much redundant. Which is a shame.
-* Make the project responsive. This was definetly not my goal, but it would be nice to make it responsive, since i will most likely show it off on the cell phone.
+* Make the project responsive. This was definetly not my goal, but it would be nice to make it responsive, since i will most likely show it off on the cell phone. Maybe learn some SASS etc.
+* Use a more mature and BETTER modularization framework / compiler than Riot.js
+* Rewrite the logic with another language that is typed / purely functional. Maybe ReasonML, ClojureScript, Elm or TypeScript ?
