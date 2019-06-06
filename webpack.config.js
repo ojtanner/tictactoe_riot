@@ -49,7 +49,8 @@ config = {
         new CompressionPlugin({
             algorithm: "gzip",
             test: /\.js$|\.css$|\.html$/,
-            minRatio: 0.8
+            minRatio: 0.8,
+            deleteOriginalAssets: true
         })
     ]
 }
