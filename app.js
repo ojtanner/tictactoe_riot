@@ -5,6 +5,12 @@ const port = (process.env.PORT || 8008);
 
 app.use(express.static(path.join(process.cwd() + '/public')));
 
+app.get('*.js', function (req, res, next) {
+    req.url = req.url + '.gz';
+    res.set('Content-Encoding', 'gzip');
+    next();
+});
+
 app.get('/', (request, response) => {
     response.header({'Content-Type': 'text/html'});
     response.sendFile(path.join(process.cwd() + '/public/html/index.html'));

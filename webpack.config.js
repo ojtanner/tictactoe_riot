@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 config = {
     entry: './public/js/src/index.js',
@@ -41,10 +42,16 @@ config = {
             assetNameRegExp: /\.optimize\.css$/g,
             cssProcessor: require('cssnano'),
             cssProcessorPluginOptions: {
-              preset: ['default', { discardComments: { removeAll: true } }],
+            preset: ['default', { discardComments: { removeAll: true } }],
             },
             canPrint: true
-          })
+        }),
+        new CompressionPlugin({
+            algorithm: "gzip",
+            test: /\.js$|\.css$|\.html$/,
+            threshold: 10240,
+            minRatio: 0.8
+        })
     ]
 }
 
