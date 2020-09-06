@@ -41,7 +41,7 @@
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.1",
-    "handlebars": ">=4.1.2",
+    "handlebars": ">=4.5.3",
     "js-yaml": ">=3.13.1"
   },
   "dependencies": {
